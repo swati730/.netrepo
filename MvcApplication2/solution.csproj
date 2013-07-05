@@ -32,4 +32,4 @@
     <NUnit Assemblies="$(MSBuildProjectDirectory)\MvcApplication2.Tests\bin\Debug\MvcApplication2.Tests.dll" ToolPath="$(MSBuildProjectDirectory)\packages   \NUnit.Runners.2.6.2\tools" OutputXmlFile="$(NUnitResultsFile)">
     </NUnit>
   </Target>
-</Proje
+</Project>
