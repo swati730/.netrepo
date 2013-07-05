@@ -1,35 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Run" ToolsVersion="4.0">
+
   <PropertyGroup>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)</MSBuildCommunityTasksPath>
      </PropertyGroup>
+
   <Import Project="$(MSBuildProjectDirectory)\MSBuild.Community.Tasks.Targets" />
-  <PropertyGroup>
+  
+<PropertyGroup>
     <OutDir>$(MSBuildProjectDirectory)\qhode\testresults</OutDir>
   </PropertyGroup>
+
   <ItemGroup>
     <Solution Include="$(MSBuildProjectDirectory)\MvcApplication2.Tests\MvcApplication2.Tests.csproj">
     </Solution>
   </ItemGroup>
+
   <Target Name="Run">
     <CallTarget Targets="BuildSolution" />
     <CallTarget Targets="RunTests" />
   </Target>
+
   <PropertyGroup>
     <NUnitResultsFile>$(OutDir)\nunit-result.xml</NUnitResultsFile>
   </PropertyGroup>
+
   <Target Name="BuildSolution">
     <Message Text="BuildSolution called." />
     <MSBuild Projects="@(Solution)" />
-  </Target>
-
-  <Target Name="ShowReservedProperties">
-    <Message Text="MSBuild ProjectDir = $(MSBuildProjectDirectory)">
-    </Message>
   </Target>
 
   <Target Name="RunTests">
     <NUnit Assemblies="$(MSBuildProjectDirectory)\MvcApplication2.Tests\bin\Debug\MvcApplication2.Tests.dll" ToolPath="$(MSBuildProjectDirectory)\packages\NUnit.Runners.2.6.2\tools" OutputXmlFile="$(NUnitResultsFile)">
     </NUnit>
   </Target>
+
+<Target Name="Build" DependsOnTargets="Run;"/>
+
 </Project>
